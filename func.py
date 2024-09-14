@@ -25,9 +25,9 @@ def handler(ctx, data: io.BytesIO = None):
         print(batch_detect_dominant_language_response.data)
 
         # Return the detected language result
-        return batch_detect_dominant_language_response.Response(
+        return response.Response(
             ctx, 
-            response_data=json.dumps({
+            batch_detect_dominant_language_response=json.dumps({
                 "detected_language": response.data.languages[0].name,
                 "confidence": response.data.languages[0].score
             }),
@@ -37,6 +37,6 @@ def handler(ctx, data: io.BytesIO = None):
         logging.getLogger().error(f"Error in handler: {str(ex)}")
         return response.Response(
             ctx, 
-            response_data=json.dumps({"error": str(ex)}),
+            batch_detect_dominant_language_response=json.dumps({"error": str(ex)}),
             headers={"Content-Type": "application/json"}
         )
