@@ -17,8 +17,6 @@ pipeline {
                 }                   
             }
         }
-    }
-    stages {
         stage('Push to OCIR') {
             steps {
                 echo 'Hello World'
@@ -29,4 +27,5 @@ pipeline {
             }
         }
     }
+
 }
