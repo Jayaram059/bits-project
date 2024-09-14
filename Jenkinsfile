@@ -10,11 +10,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
-                script {
-                    //dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
-                    bat "cmd /c docker images; "
-                }                   
+                echo 'Hello World'                 
             }
         }
         stage('Push to OCIR') {
