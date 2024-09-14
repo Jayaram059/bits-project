@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
-                    sh ("pwd;ls -ltr")
+                    bat "cmd /c git branch; docker images"
                 }
 
                     

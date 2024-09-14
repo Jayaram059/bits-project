@@ -6,17 +6,24 @@ from fdk import response
 
 def handler(ctx, data: io.BytesIO = None):
     try:
+        # Parse the incoming request data
+        body = json.loads(data.getvalue()) if data else {}
+        text_to_analyze = body.get("text", "")
+
+        if not text_to_analyze:
+            raise ValueError("No text provided for language detection.")
+
         # Set up OCI SDK client
         signer = oci.auth.signers.get_resource_principals_signer()
         ai_client = oci.ai_language.AIServiceLanguageClient(config={}, signer=signer)
         
-        # Request to detect dominant language
+        # Request to detect dominant language using the provided text
         batch_detect_dominant_language_response = ai_client.batch_detect_dominant_language(
             batch_detect_dominant_language_details=oci.ai_language.models.BatchDetectDominantLanguageDetails(
                 documents=[
                     oci.ai_language.models.DominantLanguageDocument(
                         key="doc1",
-                        text="Zoom interface is really simple and easy to conduct virtual meetings. It is very easy to share the Zoom link to join the video conference."
+                        text=text_to_analyze  # Use text from the request body
                     )
                 ],
                 should_ignore_transliteration=True,
