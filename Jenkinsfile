@@ -1,7 +1,7 @@
 pipeline {
     environment {
         ociCrdential = "${params.ocirCredential}"
-        ociRegistry = "hyd.ocir.io/axvjenufkdre/bits-genai/genaiImage"
+        ociRegistry = "hyd.ocir.io/axvjenufkdre/bits-genai/genaimage"
         dockerFile = "Dockerfile"
         dockerImage = ''
     }
