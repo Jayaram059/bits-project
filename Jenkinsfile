@@ -13,6 +13,7 @@ pipeline {
                 echo 'Hello World'
                 script {
                     dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
+                    dockerImage.push
                    // bat "cmd /c docker build -t genaiImage:${BUILD_NUMBER}; "
                 }                   
             }
