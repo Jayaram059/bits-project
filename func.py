@@ -1,29 +1,42 @@
-#
-# hello-python version 1.0.
-#
-# Copyright (c) 2020 Oracle, Inc.  All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
-#
-
 import io
 import json
-
+import logging
+import oci
 from fdk import response
 
-
-def handler(ctx, data: io.BytesIO=None):
-    print("Entering Python Hello World handler", flush=True)
-    name = "World"
+def handler(ctx, data: io.BytesIO = None):
     try:
-        body = json.loads(data.getvalue())
-        name = body.get("name")
-    except (Exception, ValueError) as ex:
-        print(str(ex), flush=True)
+           # Set up OCI SDK client
+        signer = oci.auth.signers.get_resource_principals_signer()
+        ai_client = oci.ai_language.AIServiceLanguageClient(config={}, signer=signer)
+        
+        # Send the request to service, some parameters are not required, see API
+        # doc for more info
+        batch_detect_dominant_language_response = ai_client.batch_detect_dominant_language(
+            batch_detect_dominant_language_details=oci.ai_language.models.BatchDetectDominantLanguageDetails(
+                documents=[
+                    oci.ai_language.models.DominantLanguageDocument(
+                        key="doc1",
+                        text="Zoom interface is really simple and easy to conduct virtual meetings. It is very easy to share the Zoom link to join the video conference.")],
+                should_ignore_transliteration=True,
+                chars_to_consider=905))
 
-    print("Vale of name = ", name, flush=True)
-    print("Exiting Python Hello World handler", flush=True)
-    return response.Response(
-        ctx, response_data=json.dumps(
-            {"message": "Hello {0}".format(name)}),
-        headers={"Content-Type": "application/json"}
-    )
+        # Get the data from response
+        print(batch_detect_dominant_language_response.data)
+
+        # Return the detected language result
+        return batch_detect_dominant_language_response.Response(
+            ctx, 
+            response_data=json.dumps({
+                "detected_language": response.data.languages[0].name,
+                "confidence": response.data.languages[0].score
+            }),
+            headers={"Content-Type": "application/json"}
+        )
+    except Exception as ex:
+        logging.getLogger().error(f"Error in handler: {str(ex)}")
+        return response.Response(
+            ctx, 
+            response_data=json.dumps({"error": str(ex)}),
+            headers={"Content-Type": "application/json"}
+        )
