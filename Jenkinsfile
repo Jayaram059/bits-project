@@ -12,8 +12,8 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
-                    dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
-                   // bat "cmd /c docker build -t genaiImage:${BUILD_NUMBER}; "
+                    //dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
+                    bat "cmd /c docker images; "
                 }                   
             }
         }
@@ -22,6 +22,7 @@ pipeline {
                 echo 'Hello World'
                 script {
                     docker.withRegistry('https://hyd.ocir.io', ociCrdential)
+                    dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
                     dockerImage.Push
                 }                   
             }
