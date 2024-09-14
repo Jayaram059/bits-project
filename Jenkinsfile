@@ -19,7 +19,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://hyd.ocir.io', 'ocir-docker-login') {
                     dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
-                    dockerImage.Push
+                    dockerImage.push
                     }
                 }                   
             }
