@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
-                    docker.withRegistry('https://hyd.ocir.io', ociCrdential)
+                    docker.withRegistry('https://hyd.ocir.io', 'ocir-docker-login')
                     dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
                     dockerImage.Push
                 }                   
