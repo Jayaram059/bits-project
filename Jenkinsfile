@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
-                    docker.withRegistry('http://hyd.ocir.io', ociCrdential)
+                    docker.withRegistry('https://hyd.ocir.io', ociCrdential)
                     dockerImage.Push
                 }                   
             }
