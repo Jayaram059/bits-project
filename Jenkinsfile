@@ -28,9 +28,9 @@ pipeline {
 
 
                         sh """
-                            echo '${ocir-docker-login}' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin
-                            sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f ${dockerFile} .
-                            sudo docker push ${ociRegistry}:${BUILD_NUMBER}
+                            set +x ;echo 'Nyc1]fAEl.i2iwd)HRE1' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin ;
+                            sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f ${dockerFile} . ;
+                            sudo docker push ${ociRegistry}:${BUILD_NUMBER} ;
                              """
                         //sh """ sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f Dockerfile .; sudo docker push ${ociRegistry}:${BUILD_NUMBER}"""
                         dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
