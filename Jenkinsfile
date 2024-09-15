@@ -5,7 +5,9 @@ pipeline {
         dockerFile = "Dockerfile"
         dockerImage = ''
     }
-    agent any
+    agent {
+        'jayaramslave'
+    }
 
     stages {
         stage('Hello') {
