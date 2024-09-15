@@ -28,6 +28,7 @@ pipeline {
 
 
                         sh """
+                            echo '${ociRegistryPassword}' | docker login hyd.ocir.io -u '${ociRegistryUsername}' --password-stdin
                             sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f ${dockerFile} .
                             sudo docker push ${ociRegistry}:${BUILD_NUMBER}
                              """
