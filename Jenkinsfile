@@ -25,9 +25,9 @@ pipeline {
                 script {
                     sh """alias docker="sudo docker" """
                     docker.withRegistry('https://hyd.ocir.io', 'ocir-docker-login') {
-                        sh """ sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f Dockerfile .; sudo docker push ${ociRegistry}:${BUILD_NUMBER}"""
-                    //dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
-                    //dockerImage.push("${BUILD_NUMBER}")
+                        //sh """ sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f Dockerfile .; sudo docker push ${ociRegistry}:${BUILD_NUMBER}"""
+                        dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
+                        dockerImage.push("${BUILD_NUMBER}")
                     }
                 }                   
             }
