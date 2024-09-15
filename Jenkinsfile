@@ -5,9 +5,13 @@ pipeline {
         dockerFile = "Dockerfile"
         dockerImage = ''
     }
-    node {
-        label  'jayaramslave'
+    agent {
+        node {
+            label  'jayaramslave'
     }
+
+    }
+
 
     stages {
         stage('Hello') {
