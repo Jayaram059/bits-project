@@ -23,19 +23,11 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
-                    sh """alias docker="sudo docker" """
-                    docker.withRegistry('https://hyd.ocir.io', 'ocir-docker-login') {
-
-
                         sh """
-                            set +x ;echo 'Nyc1]fAEl.i2iwd)HRE1' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin ;
+                            echo 'Nyc1]fAEl.i2iwd)HRE1' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin ;
                             sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f ${dockerFile} . ;
                             sudo docker push ${ociRegistry}:${BUILD_NUMBER} ;
                              """
-                        //sh """ sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f Dockerfile .; sudo docker push ${ociRegistry}:${BUILD_NUMBER}"""
-                        dockerImage = docker.build("${ociRegistry}:${BUILD_NUMBER}", "-f ${dockerFile} .")
-                        dockerImage.push("${BUILD_NUMBER}")
-                    }
                 }                   
             }
         }
