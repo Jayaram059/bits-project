@@ -50,7 +50,7 @@ def main():
         # Side pane with radio buttons for navigation
         selected_page = st.sidebar.radio(
             "Choose a page",
-            ["GenAI Page", "Data Analysis", "Model Insights"]
+            ["OCI Lang Detection GenAI Model", "Data Analysis Model", "Model Insights Model"]
         )
 
         # Based on user selection, load the corresponding page
