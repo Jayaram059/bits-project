@@ -54,11 +54,11 @@ def main():
         )
 
         # Based on user selection, load the corresponding page
-        if selected_page == "GenAI Page":
+        if selected_page == "OCI Lang Detection GenAI Model":
             gen_ai_page()
-        elif selected_page == "Data Analysis":
+        elif selected_page == "Data Analysis Model":
             data_analysis_page()
-        elif selected_page == "Model Insights":
+        elif selected_page == "Model Insights Model":
             model_insights_page()
     else:
         welcome_page()  # If not logged in, show the welcome page for login
