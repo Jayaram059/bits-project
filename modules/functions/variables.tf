@@ -18,8 +18,6 @@ variable "function_image" {
   description = "The Docker image for the OCI Function"
 }
 
-variable "api_gateway_id" {
-  description = "The ID of the API Gateway"
-}
+
 
 

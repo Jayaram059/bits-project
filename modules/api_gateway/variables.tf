@@ -19,17 +19,13 @@ variable "api_gateway_id" {
   description = "The ID of the API Gateway"
 }
 
-variable "tj_authentication_servers" {
+variable "bits_authentication_servers" {
   description= "Created By Jayaran"
   default = {
   }
 
 
 }
-
-
-
-
 
 variable "tenancy_id" {
   description = "Tenancy Ocid"
@@ -100,47 +96,47 @@ variable "private_egress_security_rule_ip" {
   default 	= "0.0.0.0/0"
 }
 
-variable "elq_function_api_path" {
-  description = "elq function path"
+variable "bits_function_api_path" {
+  description = "bits function path"
   default 	= "/genai"
 }
 
-variable "elq_function_api_path_24a" {
-  description = "elq function path 24a"
+variable "bits_function_api_path_24a" {
+  description = "bits function path 24a"
   default 	= "/sl"
 }
 
-variable "rsys_function_api_path" {
-  description = "rsys function path"
+variable "bits_function_api_path" {
+  description = "bits function path"
   default 	= "/genai"
 }
 
-variable "rsys_fun_concurrency_count" {
-  description = "rsys function concurrency count"
+variable "bits_fun_concurrency_count" {
+  description = "bits function concurrency count"
   default 	= "20"
 }
 
-variable "elq_fun_concurrency_count" {
-  description = "elq function concurrency count"
+variable "bits_fun_concurrency_count" {
+  description = "bits function concurrency count"
   default 	= "20"
 }
 
-variable "rsys_function_memory" {
+variable "bits_function_memory" {
   type	= number
   default = 512
 }
 
-variable "rsys_function_timeout" {
+variable "bits_function_timeout" {
   type	= number
   default = 180
 }
 
-variable "elq_function_memory" {
+variable "bits_function_memory" {
   type	= number
   default = 512
 }
 
-variable "elq_function_timeout" {
+variable "bits_function_timeout" {
   type	= number
   default = 180
 }
@@ -176,7 +172,7 @@ variable "authentication_issuers" {
 }
 
 variable "loggig_comp_id" {
-  default 	= ""
+  default 	= "ocid1.compartment.oc1..aaaaaaaazpzfkeltxq3723mzsarac6z5fgret4ok32wyjvkkwn2g6nneumiq"
   description = "logging compartment ocid"
 }
 
@@ -195,21 +191,21 @@ variable "idcs_url_cidr_block" {
   default 	= ""
 }
 
-variable "elq_customer_tenants" {
+variable "bits_customer_tenants" {
   type = map(object({
 	client_id = string
 	secret	= string
   }))
-  description = "list of elq tenants"
+  description = "list of bits tenants"
   default 	= {}
 }
 
-variable "rsys_customer_tenants" {
+variable "bits_customer_tenants" {
   type = map(object({
 	client_id = string
 	secret	= string
   }))
-  description = "list of elq tenants"
+  description = "list of bits tenants"
   default 	= {}
 }
 
@@ -230,29 +226,29 @@ locals {
   app_name_prefix = "genai"
   name_prefix 	= "${var.region_key}-${var.environment}"
 
-  rsys_name_prefix = "${local.name_prefix}-rsys-${local.app_name_prefix}"
-  elq_name_prefix = "${local.name_prefix}-elq-${local.app_name_prefix}"
+  bits_name_prefix = "${local.name_prefix}-bits-${local.app_name_prefix}"
+  bits_name_prefix = "${local.name_prefix}-bits-${local.app_name_prefix}"
 
   # function
-  elq_app_name   	= "${local.elq_name_prefix}-fnapp"
-  rsys_app_name  	= "${local.rsys_name_prefix}-fnapp"
-  elq_function_name  = "${local.elq_name_prefix}-fn"
-  rsys_function_name = "${local.rsys_name_prefix}-fn"
+  bits_app_name   	= "${local.bits_name_prefix}-fnapp"
+  bits_app_name  	= "${local.bits_name_prefix}-fnapp"
+  bits_function_name  = "${local.bits_name_prefix}-fn"
+  bits_function_name = "${local.bits_name_prefix}-fn"
 
 
   #apigw
   apigw_display_name     	= "${local.name_prefix}-apigw"
-  elq_apigw_deployment_name  = "${local.elq_name_prefix}-deployment"
-  rsys_apigw_deployment_name = "${local.rsys_name_prefix}-deployment"
+  bits_apigw_deployment_name  = "${local.bits_name_prefix}-deployment"
+  bits_apigw_deployment_name = "${local.bits_name_prefix}-deployment"
 
   # log
   lg_display_name      	= "${local.name_prefix}-lg"
-  rsys_fn_log_display_name = "${local.rsys_name_prefix}-fn-log"
-  elq_fn_log_display_name  = "${local.elq_name_prefix}-fn-log"
-  rsys_apigw_log_name  	= "${local.rsys_name_prefix}-apigw-log"
-  elq_apigw_log_name   	= "${local.elq_name_prefix}-apigw-log"
-  rsys_apigw_exe_log_name  = "${local.rsys_name_prefix}-apigw-exe-log"
-  elq_apigw_exe_log_name   = "${local.elq_name_prefix}-apigw-exe-log"
+  bits_fn_log_display_name = "${local.bits_name_prefix}-fn-log"
+  bits_fn_log_display_name  = "${local.bits_name_prefix}-fn-log"
+  bits_apigw_log_name  	= "${local.bits_name_prefix}-apigw-log"
+  bits_apigw_log_name   	= "${local.bits_name_prefix}-apigw-log"
+  bits_apigw_exe_log_name  = "${local.bits_name_prefix}-apigw-exe-log"
+  bits_apigw_exe_log_name   = "${local.bits_name_prefix}-apigw-exe-log"
 
   # policy
   pol_display_name = "${local.name_prefix}-pol"
@@ -272,6 +268,7 @@ locals {
 
   # bucket
   bucket_display_name = "${local.name_prefix}-bucket"
+  
 }
 
 

@@ -16,17 +16,25 @@ egress_ip           = "138.1.33.162/32"
 api_gateway_name  = "bitsproject_api_gateway"
 function_app_name = "bitsproject_function_app"
 function_name     = "bitsproject_function"
-function_image    = "hyd.ocir.io/axvjenufkdre/bits-genai/jayaram059-genai-new:latest"
+function_image    = "hyd.ocir.io/axvjenufkdre/bits-genai/jayaram059-genai:latest"
 
 dynamic_group_name = "bitsproject_dynamic_group"
 policies_name      = "bitsproject_api_functions_policy"
 
 bucket_name = "bitsproject-terraform-state"
 
-tj_authentication_servers = { for elq_tenant in local.elq_tenants : elq_tenant => {
-  values    = [elq_tenant]
+tj_authentication_servers = { for bits_tenant in local.bits_tenants : bits_tenant => {
+  values    = [bits_tenant]
   issuers   = ["https://identity.oraclecloud.com/"]
-  audiences = ["https://sandbox.elq.${elq_tenant}.ocs.oc-test.com"]
+  audiences = ["https://sandbox.bits.${bits_tenant}.ocs.oc-test.com"]
+  uri       = "https://idcs-af93225cc99845dc91c457ca72fee84e.identity.preprod.oraclecloud.com/admin/v1/SigningCert/jwk"
+  }
+}
+
+bits_authentication_servers = { for bits_tenant in local.bits_tenants : bits_tenant => {
+  values    = [bits_tenant]
+  issuers   = ["https://identity.oraclecloud.com/"]
+  audiences = ["https://qa2.bits.${bits_tenant}.ocs.oc-test.com"]
   uri       = "https://idcs-af93225cc99845dc91c457ca72fee84e.identity.preprod.oraclecloud.com/admin/v1/SigningCert/jwk"
   }
 }

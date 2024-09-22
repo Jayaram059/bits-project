@@ -23,7 +23,7 @@ module "bitsproject_vcn" {
   private_subnet_cidr = var.private_subnet_cidr
   egress_ip           = var.egress_ip
 }
-
+  
 # Create the API Gateway
 module "bitsproject_api_gateway" {
   source           = "./modules/api_gateway"
@@ -42,7 +42,7 @@ module "bitsproject_functions" {
   function_app_name = var.function_app_name
   function_name     = var.function_name
   function_image    = var.function_image
-  api_gateway_id    = module.bitsproject_api_gateway.api_gateway_id
+  #api_gateway_id    = module.bitsproject_api_gateway.api_gateway_id
 }
 
 # Outputs
