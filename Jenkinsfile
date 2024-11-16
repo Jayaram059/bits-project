@@ -19,7 +19,7 @@ pipeline {
                 echo 'Hello World'
                 script {
 
-                        docker.build("${ociRegistry}:${BUILD_NUMBER}")
+                        docker.build("${ociRegistry}:${BUILD_NUMBER}").push()
                         
                 }                   
             }
