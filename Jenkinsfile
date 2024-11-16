@@ -26,12 +26,9 @@ pipeline {
         }
         stage('Update OCI Func') {
             steps {
-
-                
-
                 script {
-                    docker.withRegistry("https://hyd.ocir.io", "${params.ocirCredential}")
-                    docker.push("${ociRegistry}:${BUILD_NUMBER}")
+    
+                    bat 'bash -c "ls -l; echo Running Linux commands on Windows!"'
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
