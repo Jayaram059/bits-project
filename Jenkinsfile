@@ -20,6 +20,8 @@ pipeline {
                 script {
 
                         docker.build("${ociRegistry}:${BUILD_NUMBER}")
+                        docker.withRegistry("${ociRegistry}:${BUILD_NUMBER}", ociCrdential) {
+                        echo 'Logged in to Docker Hub'
                 }                   
             }
         }
