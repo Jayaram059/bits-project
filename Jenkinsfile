@@ -5,12 +5,7 @@ pipeline {
         dockerFile = "Dockerfile"
         dockerImage = ''
     }
-    agent {
-        node {
-            label  'BitsAgent'
-    }
-
-    }
+    agent any
 
 
     stages {
