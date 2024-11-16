@@ -9,14 +9,8 @@ pipeline {
 
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'                 
-            }
-        }
         stage('Push to OCIR') {
             steps {
-                echo 'Hello World'
                 script {
 
                         docker.build("${ociRegistry}:${BUILD_NUMBER}").push()
