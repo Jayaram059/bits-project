@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
     
-                    bat 'bash -c "ls -l; echo Running Linux commands on Windows!"'
+                    bat 'bash -c "ls -l && echo Running commands in Git Bash!"'
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
