@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
     
-                    bat "fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}"
+                    bat "fn use context bits-jayaram && fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}"
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
