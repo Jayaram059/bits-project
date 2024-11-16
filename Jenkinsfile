@@ -20,13 +20,14 @@ pipeline {
                 script {
 
                         docker.build("${ociRegistry}:${BUILD_NUMBER}")
-                        docker.withRegistry("${ociRegistry}:${BUILD_NUMBER}", ociCrdential) {
-                        echo 'Logged in to Docker Hub'
+                        
                 }                   
             }
         }
         stage('Update OCI Func') {
             steps {
+
+                docker.push()
 
                 script {
                     sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
