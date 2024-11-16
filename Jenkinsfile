@@ -28,6 +28,7 @@ pipeline {
             steps {
                 script {
     
+                    bat "fn create context bits-new --api-url  https://functions.ap-hyderabad-1.oraclecloud.com  && fn update context registry  hyd.ocir.io/axvjenufkdre/bits-genai"
                     bat "fn list context && fn inspect context bits-jayaram && fn use context bits-jayaram && fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}"
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
