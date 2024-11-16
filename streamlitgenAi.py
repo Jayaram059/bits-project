@@ -97,7 +97,7 @@ def gen_ai_page():
     # Input form for the GenAI page
     with st.form(key="genai_form"):
         user_input = st.text_area("Enter text to findout language type")
-        api_gateway_url = st.text_input("API Gateway URL", value="https://b4ebjriwxzdganeq7khjxr42za.apigateway.ap-hyderabad-1.oci.customer-oci.com/v1/genai")
+        api_gateway_url = st.text_input("API Gateway URL", value="https://aqgqolnz6k6ueji5tnguzrmn2y.apigateway.ap-hyderabad-1.oci.customer-oci.com/v1/genai")
         submit_button = st.form_submit_button("Submit")
 
     if submit_button:

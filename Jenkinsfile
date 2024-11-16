@@ -7,7 +7,7 @@ pipeline {
     }
     agent {
         node {
-            label  'jayaramslave'
+            label  'BitsAgent'
     }
 
     }
