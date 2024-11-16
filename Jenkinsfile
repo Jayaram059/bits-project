@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
     
-                    bat 'bash -c "ls -l && echo Running commands in Git Bash!"'
+                    bat 'fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}'
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
