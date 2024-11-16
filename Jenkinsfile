@@ -30,7 +30,7 @@ pipeline {
                 
 
                 script {
-                    docker.withRegistry('https://hyd.ocir.io', ociCrdential)
+                    docker.withRegistry('https://hyd.ocir.io', ocirCredential)
                     docker.push("${ociRegistry}:${BUILD_NUMBER}")
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
