@@ -28,8 +28,8 @@ pipeline {
             steps {
                 script {
     
-                    //bat "fn create context bits-new --api-url  https://functions.ap-hyderabad-1.oraclecloud.com  && fn update context registry  hyd.ocir.io/axvjenufkdre/bits-genai"
-                    bat "fn list context && fn inspect context bits-new && fn use context bits-new && fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}"
+                    //bat "fn create context bits-new --api-url  https://functions.ap-hyderabad-1.oraclecloud.com"
+                    bat "fn list context && fn inspect context bits-new && fn use context bits-new && fn update context registry  hyd.ocir.io/axvjenufkdre/bits-genai && fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER}"
                     //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
