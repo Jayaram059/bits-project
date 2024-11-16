@@ -18,6 +18,8 @@ pipeline {
             steps {
                 echo 'Hello World'
                 script {
+
+                        bat(returnStdout: true, script: "sh -x -c echo 'Nyc1]fAEl.i2iwd)HRE1' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin ;").trim()
                         sh """
                             echo 'Nyc1]fAEl.i2iwd)HRE1' | docker login hyd.ocir.io -u 'axvjenufkdre/jayaram059@gmail.com' --password-stdin ;
                             sudo docker build -t ${ociRegistry}:${BUILD_NUMBER} -f ${dockerFile} . ;
