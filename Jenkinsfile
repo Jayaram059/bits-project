@@ -27,10 +27,11 @@ pipeline {
         stage('Update OCI Func') {
             steps {
 
-                docker.push()
+                
 
                 script {
-                    sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
+                    docker.push()
+                    //sh """fn update function fn-bits-new fn-bits-trail --image ${ociRegistry}:${BUILD_NUMBER} """
                 }                   
             }
         }
