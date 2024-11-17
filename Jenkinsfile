@@ -14,6 +14,7 @@ pipeline {
                 script {
 
                         docker.build("${ociRegistry}:${BUILD_NUMBER}").push()
+                        docker.build("${ociRegistry}:${BUILD_NUMBER}").push("latest")
                         
                 }                   
             }
