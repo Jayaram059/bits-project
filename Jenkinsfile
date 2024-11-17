@@ -13,8 +13,8 @@ pipeline {
             steps {
                 script {
 
-                       dockerImage=docker.build("${ociRegistry}:${BUILD_NUMBER}")
-                        dockerImage.push("latest")
+                       dockerImage=docker.build("${ociRegistry}:latest").push()
+                        //dockerImage.push("latest")
                         
                 }                   
             }
