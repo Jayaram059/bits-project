@@ -24,7 +24,8 @@ pipeline {
 
 post {
     success {
-        build job: 'OCI_Infra_Updator', parameters[string(name:'terraformAction', value: "plan")]
+        echo "Image success lets update OCI Infra"
+        build job: 'OCI_Infra_Updator', parameters[string(name: 'terraformAction', value: "plan")]
     }
 }
 }
