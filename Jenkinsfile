@@ -23,6 +23,6 @@ pipeline {
 }
 post {
     success {
-        build job: 'OCI_Infra_Updator', parameters[string(name:'func_image', value "${ociRegistry}:${BUILD_NUMBER}")]
+        build job: 'OCI_Infra_Updator', parameters[string(name:'func_image', value: "${ociRegistry}:${BUILD_NUMBER}")]
     }
 }
